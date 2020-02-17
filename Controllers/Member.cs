@@ -14,9 +14,9 @@ namespace TaskWebApiIntro.Controllers
         private static List<Member> categories = new List<Member>(){
             new Member(){Id=1,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
             new Member(){Id=2,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
-             new Member(){Id=3,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
-             new Member(){Id=4,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
-              new Member(){Id=5,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
+            new Member(){Id=3,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
+            new Member(){Id=4,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
+            new Member(){Id=5,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
               
         };
 
@@ -29,7 +29,7 @@ namespace TaskWebApiIntro.Controllers
         }
 
         [HttpGet]
-        public IActionResult Ge()
+        public IActionResult Get()
         {
             return Ok(categories);         
         }

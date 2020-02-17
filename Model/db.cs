@@ -32,22 +32,24 @@ namespace TaskWebApiIntro
     {
         public string Content { get; set; }
         public string Title { get; set; }
+        public int Member_id { get; set; }
     }
 
     public class Topic :TopicRequest
     {
         public int Id { get; set; }
-        public int Member_id { get; set; }  
+          
     }
 
     public class RepliesRequest
     {
         public string Content { get; set; }
+        public int Member_id { get; set; }
+        public int Topic_id { get; set; }
     }
     public class Replies : RepliesRequest
     {
         public int Id { get; set; }
-        public int Member_id { get; set; }
-        public int Topic_id { get; set; }
+
     }
 }
