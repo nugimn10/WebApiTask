@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.Extensions.Logging;
 
 namespace TaskWebApiIntro.Controllers
@@ -11,7 +13,7 @@ namespace TaskWebApiIntro.Controllers
     [Route("member")]
     public class MemberController : ControllerBase
     {
-        private static List<Member> categories = new List<Member>(){
+        private static List<Member> members = new List<Member>(){
             new Member(){Id=1,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
             new Member(){Id=2,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
             new Member(){Id=3,Username="NNbesar", Password="BeTheOneThatYouWantToBe", Email ="nugi.mn@gmail.com", FullName ="Nugi Mulya Nugraha", Popularity ="Very Popular"},
@@ -31,20 +33,28 @@ namespace TaskWebApiIntro.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(categories);         
+            return Ok(members);         
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(categories.Find( e => e.Id == id));
+            return Ok(members.Find( e => e.Id == id));
         }
         [HttpPost]
         public IActionResult MemberAdd(Member member)
         {
-            var addCategories = new Member(){Id=member.Id, Username = member.Username, Password = member.Password, Email=member.Email, FullName = member.FullName, Popularity = member.Popularity};
-            categories.Add(addCategories);
+            var addMembers = new Member(){Id=member.Id, Username = member.Username, Password = member.Password, Email=member.Email, FullName = member.FullName, Popularity = member.Popularity};
+            members.Add(addMembers);
 
-            return Ok(new {Status = "Success", Message ="SUccess Add Data", data =categories});
+            return Ok(new {Status = "Success", Message ="SUccess Add Data", data =members});
+        }
+        [HttpPatch("{id}")]
+        public IActionResult patchTopic(int id, [FromBody]JsonPatchDocument<Member> ptcMember)
+        {
+
+            ptcMember.ApplyTo(members.Find(e => e.Id == id));
+            return Ok(members.Find(e => e.Id == id));
+
         }
     }
 }

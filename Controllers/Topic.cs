@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.Extensions.Logging;
+
 
 namespace TaskWebApiIntro.Controllers
 {
@@ -42,6 +45,22 @@ namespace TaskWebApiIntro.Controllers
             topics.Add(addTopics);
 
             return Ok(new {Status = "Success", Message ="SUccess Add Data", data =topics});
+        }
+        [HttpDelete("{id}")]
+        public IActionResult delTopic(int id)
+        {
+            var x = topics.Find(e => e.Id == id);
+            topics.Remove(x);
+            return Ok(new {Status = "Success", Message ="SUccess Delete Data", data =topics});
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult patchTopic(int id, [FromBody]JsonPatchDocument<Topic> ptcTopic)
+        {
+
+            ptcTopic.ApplyTo(topics.Find(e => e.Id == id));
+            return Ok(topics.Find(e => e.Id == id));
+
         }
     }
 }
