@@ -49,7 +49,7 @@ namespace TaskWebApiIntro.Controllers
             return Ok(new {Status = "Success", Message ="SUccess Add Data", data =members});
         }
         [HttpPatch("{id}")]
-        public IActionResult patchTopic(int id, [FromBody]JsonPatchDocument<Member> ptcMember)
+        public IActionResult patchMember(int id, [FromBody]JsonPatchDocument<Member> ptcMember)
         {
 
             ptcMember.ApplyTo(members.Find(e => e.Id == id));

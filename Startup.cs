@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TaskWebApiIntro.Middleware;
 
 namespace TaskWebApiIntro
 {
@@ -40,6 +41,10 @@ namespace TaskWebApiIntro
             }
 
             // app.UseHttpsRedirection();
+
+
+            // app.UseMiddleware<CustomAuthMiddleware>();
+            app.UseCustomAuthMiddleware();
 
             app.UseRouting();
 

@@ -59,7 +59,7 @@ namespace TaskWebApiIntro.Controllers
 
         
         [HttpPatch("{id}")]
-        public IActionResult patchTopic(int id, [FromBody]JsonPatchDocument<Categories> ptcCategories)
+        public IActionResult patchCategories(int id, [FromBody]JsonPatchDocument<Categories> ptcCategories)
         {
 
             ptcCategories.ApplyTo(categories.Find(e => e.Id == id));
