@@ -15,16 +15,16 @@ namespace TaskWebApiIntro.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-                if (context.Request.Headers["Authorization"]=="hello")           
-                {
+                // if (context.Request.Headers["Authorization"]=="hello")           
+                // {
                     await _next(context);
 
-                }else{
-                                    var text ="Not Authorized";
-                var data = System.Text.Encoding.UTF8.GetBytes(text);
-                await context.Response.Body.WriteAsync(data,0,data.Length);
+                // }else{
+                // var text ="Not Authorized";
+                // var data = System.Text.Encoding.UTF8.GetBytes(text);
+                // await context.Response.Body.WriteAsync(data,0,data.Length);
 
-                }
+                // }
         }
     }
 

@@ -48,6 +48,13 @@ namespace TaskWebApiIntro.Controllers
 
             return Ok(new {Status = "Success", Message ="SUccess Add Data", data =members});
         }
+        [HttpDelete("{id}")]
+        public IActionResult delMember(int id)
+        {
+            var x = members.Find(e => e.Id == id);
+            members.Remove(x);
+            return Ok(new {Status = "Success", data =members});
+        }
         [HttpPatch("{id}")]
         public IActionResult patchMember(int id, [FromBody]JsonPatchDocument<Member> ptcMember)
         {
